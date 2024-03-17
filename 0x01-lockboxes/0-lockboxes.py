@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""loocked"""
+"""0. Lockboxes"""
 
 
 def canUnlockAll(boxes):
@@ -7,7 +7,7 @@ def canUnlockAll(boxes):
     Check if it's possible to unlock all the boxes based on a set of keys.
 
     Parameters:
-    - boxes : A list of lists.
+    - boxes (List[List[int]]): A list of lists.
 
     Returns:
     - bool: True if all boxes can be unlocked, False otherwise.
