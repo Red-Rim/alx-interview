@@ -1,18 +1,34 @@
+#!/usr/bin/python3
+"""loocked"""
+
+
 def canUnlockAll(boxes):
-    if not boxes:
-        return False
+    """
+    Check if it's possible to unlock all the boxes based on a set of keys.
 
-    n = len(boxes)
-    visited = [False] * n
-    visited[0] = True
-    queue = [0]
+    Parameters:
+    - boxes : A list of lists.
 
-    while queue:
-        current_box = queue.pop(0)
-        for key in boxes[current_box]:
-            if 0 <= key < n and not visited[key]:
-                visited[key] = True
-                queue.append(key)
+    Returns:
+    - bool: True if all boxes can be unlocked, False otherwise.
+    """
+    keys_collected = set()
+    boxes_count = len(boxes)
+    keys_count = 0
 
-    return all(visited)
+    for key in boxes[0]:
+        if key not in keys_collected and 0 < key < boxes_count:
+            keys_collected.add(key)
+            keys_count += 1
+
+    index = 0
+    while index < len(keys_collected):
+        current_key = keys_collected.pop()
+        for key in boxes[current_key]:
+            if key not in keys_collected and 0 < key < boxes_count:
+                keys_collected.add(key)
+                keys_count += 1
+        index += 1
+
+    return keys_count == boxes_count - 1
 
